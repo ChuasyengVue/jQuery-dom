@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2 - Movies App! </title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<style>
+    .item{
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+    <form id="titleRating">
+        <label for="title">Title:</label>
+        <input type="text" id="title" required>
+
+        <label for="rating">Rating:</label>
+        <input type="text" id="rating" required min="0" max="10">
+
+        <button type="submit">Submit Form</button>
+
+    </form>
+
+    <div id="titleList"></div>
+
+<script>
+    // Execute document when DOM is loaded
+    $(document).ready(function(){
+    // A submit form
+    $('#titleRating').submit(function(e){
+        e.preventDefault();
+
+        // Getting input from the value
+        let title = $('#title').val();
+        let rating = $('#rating').val();
+
+    // Appending value to the DOM
+    $('#titleList').append(
+        '<div class = "item"><strong>Title:</strong>'+ title + 
+        ', <strong>Rating:</strong>'  + rating + 
+        '<button class = "removeBtn">Remove</button></div>');
+    
+    // Clearing the input
+    $('#title').val('');
+    $('#rating').val('');
+
+    });
+
+    // Remove btn clck evt
+    $('#titleList').on('click','.removeBtn', function(){
+        $(this).parent('.item').remove();
+    });
+});
+</script>
+
+</body>
+
+
+</html>
